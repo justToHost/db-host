@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "Dev" : "nodemon index.js"
+    "Dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "pg": "^8.15.6"

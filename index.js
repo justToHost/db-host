@@ -1,19 +1,42 @@
 import express from "express"
 import pkg from "pg"
 import ejs from "ejs"
+import dotenv from "dotenv"
+
+
 const app = express()
+dotenv.config() // to know the .env file
 
 app.set('view engine', 'ejs')
 
 const {Pool} = pkg
-
-const pool = new Pool({
+// locally
+const db = {
     user : 'postgres',
     host :'localhost',
     database : "hostingTest",
     password : 'Zohrajan10@',
     port : 5432
+}
+
+// on production
+const pdb = {
+    user : process.env.PGUSER,
+    host :process.env.PGHOST,
+    database : process.env.PGDATABASE,
+    password : process.env.PGPASSWORD,
+    port : process.env.PGPORT
+}
+
+
+const pool = new Pool({
+    connectionString : process.env.DB_URL,
+    ssl: {
+        rejectUnauthorized: false
+      }
 })
+
+// intername db
 
 
 const q = 'CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, username VARCHAR(100) NOT NULL, email TEXT NOT NULL);'
