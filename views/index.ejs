@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <H1>USERS !</H1>
+    <% if(users){ %>
+        <% users.forEach((user)=>{ %>
+                <li>username : <%= user.username %> </li>
+                <li>email : <%= user.email %></li>
+                <li>
+                    <form action="/delete/<%=user.id%>" method="POST">
+                        <button>Delete</button>
+                      </form>
+                </li>
+        <% }) %>
+        <% } %>
+</body>
+</html>
