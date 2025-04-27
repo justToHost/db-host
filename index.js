@@ -46,18 +46,18 @@ pool.query(q).then((result)=>{
 
 app.get('/',async(req,res)=>{
     try{
-        // await pool.query('SELECT 1')
+        await pool.query('SELECT 1')
         // res.send('database connected !')
-        // const inserq = 'INSERT INTO  users(username, email) VALUES($1, $2) RETURNING *'
-        // const newUser = await pool.query(inserq, ["ali", "abedkhan.noori10@gmail.com"]);
+        const inserq = 'INSERT INTO  users(username, email) VALUES($1, $2) RETURNING *'
+        const newUser = await pool.query(inserq, ["ali", "abedkhan.noori10@gmail.com"]);
         
-        // if(newUser){
-        //     console.log('data inserted success ' + JSON.stringify(newUser.rows))
+        if(newUser){
+            console.log('data inserted success ' + JSON.stringify(newUser.rows))
          const result = await pool.query('SELECT * FROM users ORDER BY id')
          const users = result.rows
             res.render('index', {users: users})   
 
-        // }
+        }
 
         
     }catch(err){
